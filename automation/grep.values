@@ -1,0 +1,7 @@
+system.cpu.dcache.overall_miss_rate::total     0.117325                       # miss rate for overall accesses
+system.cpu.icache.overall_miss_rate::total     0.000015                       # miss rate for overall accesses
+system.l2.overall_miss_rate::total           0.999993                       # miss rate for overall accesses
+l1.icache.miss_penality 			 6
+l1.dcache.miss_penality 			 6
+l2.miss_penality 				 50
+system.cpi 				     51.703690 

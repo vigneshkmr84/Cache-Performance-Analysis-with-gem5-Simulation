@@ -1,0 +1,26 @@
+[system.cpu.branchPred]
+type=TournamentBP
+BTBEntries=4096
+BTBTagSize=16
+RASSize=16
+choiceCtrBits=2
+choicePredictorSize=4096
+eventq_index=0
+globalCtrBits=2
+globalPredictorSize=4096
+instShiftAmt=2
+====================================================================
+system.cpu.branchPred.lookups                    2540                       # Number of BP lookups
+system.cpu.branchPred.condPredicted              2540                       # Number of conditional branches predicted
+system.cpu.branchPred.condIncorrect               506                       # Number of conditional branches incorrect
+system.cpu.branchPred.BTBLookups                 2029                       # Number of BTB lookups
+system.cpu.branchPred.BTBHits                     484                       # Number of BTB hits
+system.cpu.branchPred.BTBCorrect                    0                       # Number of correct BTB predictions (this stat may not work properly.
+system.cpu.branchPred.BTBHitPct             23.854115                       # BTB Hit Percentage
+system.cpu.branchPred.usedRAS                     208                       # Number of times the RAS was used to get a target.
+system.cpu.branchPred.RASInCorrect                 86                       # Number of incorrect RAS predictions.
+system.cpu.branchPred.BTBMissPct            76.145885                       # BTB Miss-Percentage
+system.cpu.Branches                              2540                       # Number of branches fetched
+system.cpu.predictedBranches                      692                       # Number of branches predicted as taken
+system.cpu.BranchMispred                          506                       # Number of branch mispredictions
+system.cpu.BranchMispredPercent             19.921260                       # Percentage of Branch Mis-Predicts
