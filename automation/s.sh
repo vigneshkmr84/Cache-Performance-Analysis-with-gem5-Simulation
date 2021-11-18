@@ -51,17 +51,16 @@ getStats(){
 
 runSimulation(){
 
-# total input parameters = 8
-#OUT_DIR=~/470/l2$4_$7/$8/l1i$3_$6_l1d$2_$5/
-
     if [ $# -ne 8 ]; then 
         echo "Missing parameters; Toal 8 parameters are needed"
         echo "Input arguments passed - $*"
         exit 1
     fi 
 
+    # Sample Output Directory - ./470/block-32/l2-256kB_4/inst-64kB_1_data-64kB_32
+    # Sampke Csv File - ./470/block-32/l2-256kB_4/l2-256kB_4_output.csv
     OUT_DIR=~/cache-results/470/block-$8/l2-$4_$7/inst-$3_$6_data-$2_$5
-    CSV_FILE="~/cache-results/470/block-$8/l2-$4_$7/output.csv"
+    CSV_FILE="~/cache-results/470/block-$8/l2-$4_$7/l2-$4_$7_output.csv"
     GEM5_DIR=~/gem5/gem5
     BENCHMARK=./src/benchmark
     ARGUMENT="20 reference.dat 0 1 ~/Project1_SPEC/470.lbm/data/100_100_130_cf_a.of"
@@ -89,7 +88,7 @@ echo "Starting script"
               # cpu_type l1d_s    l1i_s     l2_s     l1d_a   l1i_a  l2_a   block_size
 #runSimulation "timing"   "128kB"  "128kB"   "1MB"    "2"     "2"    "2"    "32"
 #runSimulation "timing"  "256kB"  "128kB"   "512MB"  "4"     "2"    "4"    "32"
-runSimulation "timing" "64kB" "64kB" "256kB" "1" "1" "1" "32"
+ runSimulation "timing" "64kB" "64kB" "256kB" "1" "1" "1" "32"
  runSimulation "timing" "64kB" "64kB" "256kB" "1" "2" "1" "32"
  runSimulation "timing" "64kB" "64kB" "256kB" "1" "4" "1" "32"
  runSimulation "timing" "64kB" "64kB" "256kB" "1" "32" "1" "32"
