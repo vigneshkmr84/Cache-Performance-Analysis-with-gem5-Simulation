@@ -24,3 +24,13 @@ cpi=$(echo "scale = 8; 1 + ($dcache_miss + $icache_miss)*6 + $l2_miss*50 " | bc)
 
 
 echo "CPI: $cpi" 
+echo $# 
+
+echo $@
+
+echo "$dcache_miss, $icache_miss, $cpi" >> temp.csv
+
+
+~/cache-results/470/block-32/l2-1MB_2/inst-128kB_2_data-128kB_2
+
+~/cache-results/470/block-32/l2-1MB_2/output.csv 
