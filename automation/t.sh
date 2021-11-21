@@ -9,28 +9,24 @@ STATS_FILE=/Users/vignesh/Downloads/ca-project/results/bimode_results/m5out_458/
 #icache_miss=$(grep 'system.cpu.icache.overall_miss_rate::total' $STATS_FILE | awk '{print $2}')
 
 dcache_miss=$(cat $STATS_FILE | grep 'system.cpu.dcache.overall_miss_rate::total' | awk '{print $2}')
-icache_miss=$(cat $STATS_FILE | grep 'system.cpu.icache.overall_miss_rate::total' | awk '{print $2}')
-l2_miss=$(cat $STATS_FILE | grep 'system.l2.overall_miss_rate::total' | awk '{print $2}')
-echo 
-echo 
-echo
-echo "l1_dcache_miss = $dcache_miss"
-echo "l1_icache_miss = $icache_miss"
+l1d_access=$( cat $STATS_FILE | grep 'system.cpu.dcache.overall_accesses::total' | awk '{print $2}')
 
-echo "l2_miss = $l2_miss"
+icache_miss=$(cat $STATS_FILE | grep 'system.cpu.icache.overall_miss_rate::total' | awk '{print $2}')
+l1i_access=$( cat $STATS_FILE | grep 'system.cpu.icache.overall_accesses::total' | awk '{print $2}')
+
+l2_miss=$(cat $STATS_FILE | grep 'system.l2.overall_miss_rate::total' | awk '{print $2}')
+l2_access=$(cat $STATS_FILE | grep  'system.l2.overall_accesses::total' | awk '{print $2}')
+
+echo "l1_dcache_miss = $dcache_miss; l1_d_access = $l1d_access"
+echo "l1_icache_miss = $icache_miss; l1_i_access= $l1i_access"
+
+echo "l2_miss = $l2_miss; l2_access=$l2_access"
 
 #cpi=`expr $dcache_miss + $icache_miss`
 #cpi=`expr $cpi + 1` 
 #echo "CPI - $cpi"
 
-cpi=$(echo "scale = 4; 1 + ($dcache_miss + $icache_miss)*6 + $l2_miss*50 " | bc)
-
-echo $cpi 
-
-cpi1=$(echo "scale = 4; ($dcache_miss + $icache_miss)*6 " | bc)
-cpi2=$(echo "scale = 4; $l2_miss*50 " | bc)
-cpi=$(echo "scale = 4; 1 + $cpi1 + $cpi2 " | bc)
-
+cpi=$(echo "scale = 8; 1 + (($dcache_miss*$l1d_access + $icache_miss * $l1i_access)*6 + $l2_miss*$l2_access*50 )/500000000" | bc)
 
 echo "CPI: $cpi" 
 echo $# 
